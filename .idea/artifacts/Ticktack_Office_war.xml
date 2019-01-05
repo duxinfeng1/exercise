@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Ticktack_Office:war">
+    <output-path>$PROJECT_DIR$/../Ticktack_Office/target</output-path>
+    <root id="archive" name="Ticktack_Office.war">
+      <element id="artifact" artifact-name="Ticktack_Office:war exploded" />
+    </root>
+  </artifact>
+</component>
