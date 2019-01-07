@@ -23,7 +23,7 @@
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		  init-method="init" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://10.8.155.35:3306/db_sports" />
+		<property name="url" value="jdbc:mysql://10.8.155.35:3306/t_sport" />
 		<property name="username" value="root" />
 		<property name="password" value="456654" />
 		<!-- 配置初始化大小、最小、最大 -->
@@ -84,13 +84,13 @@
    		</tx:attributes>
    </tx:advice>
    
-   <!-- 6 AOP配置 -->
+  <!-- &lt;!&ndash; 6 AOP配置 &ndash;&gt;
    <aop:config>
-   		<!-- 切入点 -->
+   		&lt;!&ndash; 切入点 &ndash;&gt;
    		<aop:pointcut expression="execution(* com.dfz.service.impl.*.*(..))" id="pc"/>
    
-   		<!-- 通知 -->
+   		&lt;!&ndash; 通知 &ndash;&gt;
    		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
    		
-   </aop:config>
+   </aop:config>-->
 </beans>
