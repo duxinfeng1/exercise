@@ -20,7 +20,7 @@
        		扫描控制层的注解，方案1 指定具体扫描的包，方案2 指定扫描父包，必须use-default-filters="false"，
        		否则事务会不起作用
         -->
-    	<context:component-scan base-package="com.dfz.controller" />
+	<context:component-scan base-package="com.dfz.controller,com.dfz.config"></context:component-scan>
       <!--  <context:component-scan base-package="com.dxf" use-default-filters="false">
        		指定扫描的注解
        		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
