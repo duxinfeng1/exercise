@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.ReleaseMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.Release">
+    <id column="tr_id" jdbcType="INTEGER" property="trId" />
+    <result column="tr_info" jdbcType="VARCHAR" property="trInfo" />
+    <result column="th_id" jdbcType="INTEGER" property="thId" />
+    <result column="d_id" jdbcType="INTEGER" property="dId" />
+    <result column="tr_praise" jdbcType="INTEGER" property="trPraise" />
+    <result column="tr_reporttime" jdbcType="TIMESTAMP" property="trReporttime" />
+    <result column="tr_flag" jdbcType="INTEGER" property="trFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tr_id, tr_info, th_id, d_id, tr_praise, tr_reporttime, tr_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_release
+    where tr_id = #{trId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_release
+    where tr_id = #{trId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.Release">
+    insert into t_release (tr_id, tr_info, th_id, 
+      d_id, tr_praise, tr_reporttime, 
+      tr_flag)
+    values (#{trId,jdbcType=INTEGER}, #{trInfo,jdbcType=VARCHAR}, #{thId,jdbcType=INTEGER}, 
+      #{dId,jdbcType=INTEGER}, #{trPraise,jdbcType=INTEGER}, #{trReporttime,jdbcType=TIMESTAMP}, 
+      #{trFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.Release">
+    insert into t_release
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="trId != null">
+        tr_id,
+      </if>
+      <if test="trInfo != null">
+        tr_info,
+      </if>
+      <if test="thId != null">
+        th_id,
+      </if>
+      <if test="dId != null">
+        d_id,
+      </if>
+      <if test="trPraise != null">
+        tr_praise,
+      </if>
+      <if test="trReporttime != null">
+        tr_reporttime,
+      </if>
+      <if test="trFlag != null">
+        tr_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="trId != null">
+        #{trId,jdbcType=INTEGER},
+      </if>
+      <if test="trInfo != null">
+        #{trInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="thId != null">
+        #{thId,jdbcType=INTEGER},
+      </if>
+      <if test="dId != null">
+        #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="trPraise != null">
+        #{trPraise,jdbcType=INTEGER},
+      </if>
+      <if test="trReporttime != null">
+        #{trReporttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trFlag != null">
+        #{trFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Release">
+    update t_release
+    <set>
+      <if test="trInfo != null">
+        tr_info = #{trInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="thId != null">
+        th_id = #{thId,jdbcType=INTEGER},
+      </if>
+      <if test="dId != null">
+        d_id = #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="trPraise != null">
+        tr_praise = #{trPraise,jdbcType=INTEGER},
+      </if>
+      <if test="trReporttime != null">
+        tr_reporttime = #{trReporttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trFlag != null">
+        tr_flag = #{trFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tr_id = #{trId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Release">
+    update t_release
+    set tr_info = #{trInfo,jdbcType=VARCHAR},
+      th_id = #{thId,jdbcType=INTEGER},
+      d_id = #{dId,jdbcType=INTEGER},
+      tr_praise = #{trPraise,jdbcType=INTEGER},
+      tr_reporttime = #{trReporttime,jdbcType=TIMESTAMP},
+      tr_flag = #{trFlag,jdbcType=INTEGER}
+    where tr_id = #{trId,jdbcType=INTEGER}
+  </update>
+</mapper>

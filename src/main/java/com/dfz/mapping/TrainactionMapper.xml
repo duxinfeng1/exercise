@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.TrainactionMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.Trainaction">
+    <id column="t_a_id" jdbcType="INTEGER" property="tAId" />
+    <result column="ta_id" jdbcType="INTEGER" property="taId" />
+    <result column="mt_id" jdbcType="INTEGER" property="mtId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t_a_id, ta_id, mt_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_train_action
+    where t_a_id = #{tAId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_train_action
+    where t_a_id = #{tAId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.Trainaction">
+    insert into t_train_action (t_a_id, ta_id, mt_id
+      )
+    values (#{tAId,jdbcType=INTEGER}, #{taId,jdbcType=INTEGER}, #{mtId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.Trainaction">
+    insert into t_train_action
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tAId != null">
+        t_a_id,
+      </if>
+      <if test="taId != null">
+        ta_id,
+      </if>
+      <if test="mtId != null">
+        mt_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tAId != null">
+        #{tAId,jdbcType=INTEGER},
+      </if>
+      <if test="taId != null">
+        #{taId,jdbcType=INTEGER},
+      </if>
+      <if test="mtId != null">
+        #{mtId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Trainaction">
+    update t_train_action
+    <set>
+      <if test="taId != null">
+        ta_id = #{taId,jdbcType=INTEGER},
+      </if>
+      <if test="mtId != null">
+        mt_id = #{mtId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where t_a_id = #{tAId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Trainaction">
+    update t_train_action
+    set ta_id = #{taId,jdbcType=INTEGER},
+      mt_id = #{mtId,jdbcType=INTEGER}
+    where t_a_id = #{tAId,jdbcType=INTEGER}
+  </update>
+</mapper>

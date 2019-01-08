@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.GoodsDetailMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.GoodsDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="g_name" jdbcType="VARCHAR" property="gName" />
+    <result column="g_price" jdbcType="INTEGER" property="gPrice" />
+    <result column="g_num" jdbcType="INTEGER" property="gNum" />
+    <result column="s_size" jdbcType="VARCHAR" property="sSize" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, g_id, g_name, g_price, g_num, s_size, status, flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.GoodsDetail">
+    insert into goods_detail (id, g_id, g_name, 
+      g_price, g_num, s_size, 
+      status, flag)
+    values (#{id,jdbcType=INTEGER}, #{gId,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, 
+      #{gPrice,jdbcType=INTEGER}, #{gNum,jdbcType=INTEGER}, #{sSize,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.GoodsDetail">
+    insert into goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gId != null">
+        g_id,
+      </if>
+      <if test="gName != null">
+        g_name,
+      </if>
+      <if test="gPrice != null">
+        g_price,
+      </if>
+      <if test="gNum != null">
+        g_num,
+      </if>
+      <if test="sSize != null">
+        s_size,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gId != null">
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gName != null">
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null">
+        #{gPrice,jdbcType=INTEGER},
+      </if>
+      <if test="gNum != null">
+        #{gNum,jdbcType=INTEGER},
+      </if>
+      <if test="sSize != null">
+        #{sSize,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.GoodsDetail">
+    update goods_detail
+    <set>
+      <if test="gId != null">
+        g_id = #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gName != null">
+        g_name = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null">
+        g_price = #{gPrice,jdbcType=INTEGER},
+      </if>
+      <if test="gNum != null">
+        g_num = #{gNum,jdbcType=INTEGER},
+      </if>
+      <if test="sSize != null">
+        s_size = #{sSize,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.GoodsDetail">
+    update goods_detail
+    set g_id = #{gId,jdbcType=INTEGER},
+      g_name = #{gName,jdbcType=VARCHAR},
+      g_price = #{gPrice,jdbcType=INTEGER},
+      g_num = #{gNum,jdbcType=INTEGER},
+      s_size = #{sSize,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

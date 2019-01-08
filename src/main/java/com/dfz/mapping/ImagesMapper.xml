@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.ImagesMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.Images">
+    <id column="ti_id" jdbcType="INTEGER" property="tiId" />
+    <result column="ti_url" jdbcType="VARCHAR" property="tiUrl" />
+    <result column="tr_id" jdbcType="INTEGER" property="trId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ti_id, ti_url, tr_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_images
+    where ti_id = #{tiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_images
+    where ti_id = #{tiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.Images">
+    insert into t_images (ti_id, ti_url, tr_id
+      )
+    values (#{tiId,jdbcType=INTEGER}, #{tiUrl,jdbcType=VARCHAR}, #{trId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.Images">
+    insert into t_images
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tiId != null">
+        ti_id,
+      </if>
+      <if test="tiUrl != null">
+        ti_url,
+      </if>
+      <if test="trId != null">
+        tr_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tiId != null">
+        #{tiId,jdbcType=INTEGER},
+      </if>
+      <if test="tiUrl != null">
+        #{tiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="trId != null">
+        #{trId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Images">
+    update t_images
+    <set>
+      <if test="tiUrl != null">
+        ti_url = #{tiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="trId != null">
+        tr_id = #{trId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ti_id = #{tiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Images">
+    update t_images
+    set ti_url = #{tiUrl,jdbcType=VARCHAR},
+      tr_id = #{trId,jdbcType=INTEGER}
+    where ti_id = #{tiId,jdbcType=INTEGER}
+  </update>
+</mapper>

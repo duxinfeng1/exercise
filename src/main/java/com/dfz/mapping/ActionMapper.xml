@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.ActionMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.Action">
+    <id column="ta_id" jdbcType="INTEGER" property="taId" />
+    <result column="ta_url" jdbcType="VARCHAR" property="taUrl" />
+    <result column="ta_part" jdbcType="VARCHAR" property="taPart" />
+    <result column="ta_time" jdbcType="INTEGER" property="taTime" />
+    <result column="ta_rest" jdbcType="TIME" property="taRest" />
+    <result column="ta_apparatus" jdbcType="VARCHAR" property="taApparatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ta_id, ta_url, ta_part, ta_time, ta_rest, ta_apparatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_action
+    where ta_id = #{taId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_action
+    where ta_id = #{taId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.Action">
+    insert into t_action (ta_id, ta_url, ta_part, 
+      ta_time, ta_rest, ta_apparatus
+      )
+    values (#{taId,jdbcType=INTEGER}, #{taUrl,jdbcType=VARCHAR}, #{taPart,jdbcType=VARCHAR}, 
+      #{taTime,jdbcType=INTEGER}, #{taRest,jdbcType=TIME}, #{taApparatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.Action">
+    insert into t_action
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taId != null">
+        ta_id,
+      </if>
+      <if test="taUrl != null">
+        ta_url,
+      </if>
+      <if test="taPart != null">
+        ta_part,
+      </if>
+      <if test="taTime != null">
+        ta_time,
+      </if>
+      <if test="taRest != null">
+        ta_rest,
+      </if>
+      <if test="taApparatus != null">
+        ta_apparatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taId != null">
+        #{taId,jdbcType=INTEGER},
+      </if>
+      <if test="taUrl != null">
+        #{taUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="taPart != null">
+        #{taPart,jdbcType=VARCHAR},
+      </if>
+      <if test="taTime != null">
+        #{taTime,jdbcType=INTEGER},
+      </if>
+      <if test="taRest != null">
+        #{taRest,jdbcType=TIME},
+      </if>
+      <if test="taApparatus != null">
+        #{taApparatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Action">
+    update t_action
+    <set>
+      <if test="taUrl != null">
+        ta_url = #{taUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="taPart != null">
+        ta_part = #{taPart,jdbcType=VARCHAR},
+      </if>
+      <if test="taTime != null">
+        ta_time = #{taTime,jdbcType=INTEGER},
+      </if>
+      <if test="taRest != null">
+        ta_rest = #{taRest,jdbcType=TIME},
+      </if>
+      <if test="taApparatus != null">
+        ta_apparatus = #{taApparatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ta_id = #{taId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Action">
+    update t_action
+    set ta_url = #{taUrl,jdbcType=VARCHAR},
+      ta_part = #{taPart,jdbcType=VARCHAR},
+      ta_time = #{taTime,jdbcType=INTEGER},
+      ta_rest = #{taRest,jdbcType=TIME},
+      ta_apparatus = #{taApparatus,jdbcType=VARCHAR}
+    where ta_id = #{taId,jdbcType=INTEGER}
+  </update>
+</mapper>
