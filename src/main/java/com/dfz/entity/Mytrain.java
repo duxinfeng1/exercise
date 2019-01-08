@@ -17,6 +17,8 @@ public class Mytrain {
 
     private Integer mtFree;
 
+    private String mtImgpath;
+
     public Integer getMtId() {
         return mtId;
     }
@@ -71,5 +73,13 @@ public class Mytrain {
 
     public void setMtFree(Integer mtFree) {
         this.mtFree = mtFree;
+    }
+
+    public String getMtImgpath() {
+        return mtImgpath;
+    }
+
+    public void setMtImgpath(String mtImgpath) {
+        this.mtImgpath = mtImgpath == null ? null : mtImgpath.trim();
     }
 }
