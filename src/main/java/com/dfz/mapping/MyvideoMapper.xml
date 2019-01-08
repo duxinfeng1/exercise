@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.MyvideoMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.Myvideo">
+    <id column="my_id" jdbcType="INTEGER" property="myId" />
+    <result column="my_project" jdbcType="VARCHAR" property="myProject" />
+    <result column="my_info" jdbcType="VARCHAR" property="myInfo" />
+    <result column="my_difficulty" jdbcType="INTEGER" property="myDifficulty" />
+    <result column="my_cycle" jdbcType="VARCHAR" property="myCycle" />
+    <result column="my_flag" jdbcType="INTEGER" property="myFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    my_id, my_project, my_info, my_difficulty, my_cycle, my_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_myvideo
+    where my_id = #{myId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_myvideo
+    where my_id = #{myId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.Myvideo">
+    insert into t_myvideo (my_id, my_project, my_info, 
+      my_difficulty, my_cycle, my_flag
+      )
+    values (#{myId,jdbcType=INTEGER}, #{myProject,jdbcType=VARCHAR}, #{myInfo,jdbcType=VARCHAR}, 
+      #{myDifficulty,jdbcType=INTEGER}, #{myCycle,jdbcType=VARCHAR}, #{myFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.Myvideo">
+    insert into t_myvideo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="myId != null">
+        my_id,
+      </if>
+      <if test="myProject != null">
+        my_project,
+      </if>
+      <if test="myInfo != null">
+        my_info,
+      </if>
+      <if test="myDifficulty != null">
+        my_difficulty,
+      </if>
+      <if test="myCycle != null">
+        my_cycle,
+      </if>
+      <if test="myFlag != null">
+        my_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="myId != null">
+        #{myId,jdbcType=INTEGER},
+      </if>
+      <if test="myProject != null">
+        #{myProject,jdbcType=VARCHAR},
+      </if>
+      <if test="myInfo != null">
+        #{myInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="myDifficulty != null">
+        #{myDifficulty,jdbcType=INTEGER},
+      </if>
+      <if test="myCycle != null">
+        #{myCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="myFlag != null">
+        #{myFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Myvideo">
+    update t_myvideo
+    <set>
+      <if test="myProject != null">
+        my_project = #{myProject,jdbcType=VARCHAR},
+      </if>
+      <if test="myInfo != null">
+        my_info = #{myInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="myDifficulty != null">
+        my_difficulty = #{myDifficulty,jdbcType=INTEGER},
+      </if>
+      <if test="myCycle != null">
+        my_cycle = #{myCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="myFlag != null">
+        my_flag = #{myFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where my_id = #{myId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Myvideo">
+    update t_myvideo
+    set my_project = #{myProject,jdbcType=VARCHAR},
+      my_info = #{myInfo,jdbcType=VARCHAR},
+      my_difficulty = #{myDifficulty,jdbcType=INTEGER},
+      my_cycle = #{myCycle,jdbcType=VARCHAR},
+      my_flag = #{myFlag,jdbcType=INTEGER}
+    where my_id = #{myId,jdbcType=INTEGER}
+  </update>
+</mapper>

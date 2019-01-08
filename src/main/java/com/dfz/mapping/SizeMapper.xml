@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.SizeMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.Size">
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="falg" jdbcType="INTEGER" property="falg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    s_id, size, falg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_size
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_size
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.Size">
+    insert into t_size (s_id, size, falg
+      )
+    values (#{sId,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, #{falg,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.Size">
+    insert into t_size
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="falg != null">
+        falg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="falg != null">
+        #{falg,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Size">
+    update t_size
+    <set>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="falg != null">
+        falg = #{falg,jdbcType=INTEGER},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Size">
+    update t_size
+    set size = #{size,jdbcType=VARCHAR},
+      falg = #{falg,jdbcType=INTEGER}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>
