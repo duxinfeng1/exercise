@@ -11,6 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MyBatisPlus_Auto" target="1.8" />
       <module name="sport" target="1.8" />
       <module name="Ticktack_Office" target="1.8" />
     </bytecodeTargetLevel>
