@@ -4,6 +4,7 @@
 <!-- mybatis主配置文件 -->
 <configuration>
 
+	
 	<!-- 配置别名 -->
 	<typeAliases>
 	<!-- type 包名+类型，alias 指定别名 -->

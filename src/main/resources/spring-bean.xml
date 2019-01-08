@@ -22,10 +22,10 @@
  <!-- 1 druid数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		  init-method="init" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://10.8.155.35:3306/t_sport" />
-		<property name="username" value="root" />
-		<property name="password" value="456654" />
+		<!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+		<!--<property name="url" value="jdbc:mysql://10.8.155.35:3306/t_sport" />-->
+		<!--<property name="username" value="root" />-->
+		<!--<property name="password" value="456654" />-->
 		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="5" />
 		<property name="minIdle" value="5" />
@@ -43,24 +43,24 @@
 		
 	</bean>
 	
-	<!-- 2 创建Mybatis的工厂对象 -->
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!--设置数据库连接池 -->
-		<property name="dataSource" ref="dataSource"></property>
-		<!-- 加载mybatis主配置文件 -->
-		<!-- classpath 表示classes目录所在路径 -->
-		<property name="configLocation" value="classpath:mybatis.xml"/>
-		<!-- 加载映射文件 -->
-		<property name="mapperLocations" value="classpath:com/dfz/mapping/*.xml"/>
-	</bean>
-	
+	 <!--2 创建Mybatis的工厂对象 -->
+	<!--<bean id="sqlSessionFactory"-->
+		<!--class="org.mybatis.spring.SqlSessionFactoryBean">-->
+		<!--&lt;!&ndash;设置数据库连接池 &ndash;&gt;-->
+		<!--<property name="dataSource" ref="dataSource"></property>-->
+		<!--&lt;!&ndash; 加载mybatis主配置文件 &ndash;&gt;-->
+		<!--&lt;!&ndash; classpath 表示classes目录所在路径 &ndash;&gt;-->
+		<!--<property name="configLocation" value="classpath:mybatis.xml"/>-->
+		<!--&lt;!&ndash; 加载映射文件 &ndash;&gt;-->
+		<!--<property name="mapperLocations" value="classpath:com/dfz/mapping/*.xml"/>-->
+	<!--</bean>-->
+
 	<!--3设置Mybatis的映射接口 -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-		<!-- 设置映射文件所在包 -->
-		<property name="basePackage" value="com.dxf.dao"></property>
-	</bean>
+	<!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+		<!--&lt;!&ndash;<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>&ndash;&gt;-->
+		<!--&lt;!&ndash; 设置映射文件所在包 &ndash;&gt;-->
+		<!--<property name="basePackage" value="com.dxf.dao"></property>-->
+	<!--</bean>-->
 	
 	<!-- 4配置事务管理类 -->
    	<bean id="txManage" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -4,14 +4,23 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>sport</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
+
+	<!-- 引入spring的配置文件 -->
+	<!-- spring的核心配置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- 设置spring的配置文件的路径 -->
+		<param-value>classpath:spring-*.xml</param-value>
+
+		<!-- <param-value>/WEB-INF/classes/bean.xml</param-value> -->
+	</context-param>
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
 	<!-- 添加shiro过滤器 -->
 	<!-- 添加shiro过滤器 这里的filter-name 要和spring 的applicationContext.xml 里的 org.apache.shiro.spring.web.ShiroFilterFactoryBean 
 		的bean name 相同 -->
@@ -72,18 +81,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- 引入spring的配置文件 -->
-	<!-- spring的核心配置 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<!-- 设置spring的配置文件的路径 -->
-		<param-value>classpath:spring-bean.xml</param-value>
-		<!-- <param-value>/WEB-INF/classes/bean.xml</param-value> -->
-	</context-param>
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 
 
 </web-app>

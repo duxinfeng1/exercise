@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.UserDetailMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.UserDetail">
+    <id column="d_id" jdbcType="INTEGER" property="dId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="d_name" jdbcType="VARCHAR" property="dName" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="d_image" jdbcType="VARCHAR" property="dImage" />
+    <result column="d_height" jdbcType="DOUBLE" property="dHeight" />
+    <result column="d_weight" jdbcType="DOUBLE" property="dWeight" />
+    <result column="d_info" jdbcType="VARCHAR" property="dInfo" />
+    <result column="d_userID" jdbcType="VARCHAR" property="dUserid" />
+    <result column="d_register" jdbcType="DATE" property="dRegister" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    d_id, u_id, d_name, sex, d_image, d_height, d_weight, d_info, d_userID, d_register
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_details
+    where d_id = #{dId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_details
+    where d_id = #{dId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.UserDetail">
+    insert into user_details (d_id, u_id, d_name, 
+      sex, d_image, d_height, d_weight, 
+      d_info, d_userID, d_register
+      )
+    values (#{dId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{dName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{dImage,jdbcType=VARCHAR}, #{dHeight,jdbcType=DOUBLE}, #{dWeight,jdbcType=DOUBLE}, 
+      #{dInfo,jdbcType=VARCHAR}, #{dUserid,jdbcType=VARCHAR}, #{dRegister,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.UserDetail">
+    insert into user_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dId != null">
+        d_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="dName != null">
+        d_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="dImage != null">
+        d_image,
+      </if>
+      <if test="dHeight != null">
+        d_height,
+      </if>
+      <if test="dWeight != null">
+        d_weight,
+      </if>
+      <if test="dInfo != null">
+        d_info,
+      </if>
+      <if test="dUserid != null">
+        d_userID,
+      </if>
+      <if test="dRegister != null">
+        d_register,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dId != null">
+        #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="dName != null">
+        #{dName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="dImage != null">
+        #{dImage,jdbcType=VARCHAR},
+      </if>
+      <if test="dHeight != null">
+        #{dHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="dWeight != null">
+        #{dWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="dInfo != null">
+        #{dInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dUserid != null">
+        #{dUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="dRegister != null">
+        #{dRegister,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.UserDetail">
+    update user_details
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="dName != null">
+        d_name = #{dName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="dImage != null">
+        d_image = #{dImage,jdbcType=VARCHAR},
+      </if>
+      <if test="dHeight != null">
+        d_height = #{dHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="dWeight != null">
+        d_weight = #{dWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="dInfo != null">
+        d_info = #{dInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dUserid != null">
+        d_userID = #{dUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="dRegister != null">
+        d_register = #{dRegister,jdbcType=DATE},
+      </if>
+    </set>
+    where d_id = #{dId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.UserDetail">
+    update user_details
+    set u_id = #{uId,jdbcType=INTEGER},
+      d_name = #{dName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      d_image = #{dImage,jdbcType=VARCHAR},
+      d_height = #{dHeight,jdbcType=DOUBLE},
+      d_weight = #{dWeight,jdbcType=DOUBLE},
+      d_info = #{dInfo,jdbcType=VARCHAR},
+      d_userID = #{dUserid,jdbcType=VARCHAR},
+      d_register = #{dRegister,jdbcType=DATE}
+    where d_id = #{dId,jdbcType=INTEGER}
+  </update>
+</mapper>
