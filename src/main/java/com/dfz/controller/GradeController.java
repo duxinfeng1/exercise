@@ -17,7 +17,7 @@ public class GradeController {
     @Autowired
     private IGradeService gradeS;
 
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"数量","名次"},value = "获取名次接口")
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品类型接口")
     @GetMapping("/grade.do")
     public ResultVo findAll() {
         ResultVo vo = gradeS.findAll();

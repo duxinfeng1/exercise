@@ -76,17 +76,17 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<!-- 访问静态资源时，因为路径可以匹配上，就会访问DispatcherServlet，但是DispatcherServlet默认情况下，不处理静态资源，所以报404 -->
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/v2/api-docs</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DispatcherServlet</servlet-name>
-		<!-- 访问静态资源时，因为路径可以匹配上，就会访问DispatcherServlet，但是DispatcherServlet默认情况下，不处理静态资源，所以报404 -->
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-
-
 
 
 </web-app>
