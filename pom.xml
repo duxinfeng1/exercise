@@ -269,7 +269,7 @@
                 <configuration>
                     <uriEncoding>UTF-8</uriEncoding>
                     <!-- 发布的web应用的路径 -->
-                    <path>/</path>
+                    <path>/sport</path>
                 </configuration>
             </plugin>
 

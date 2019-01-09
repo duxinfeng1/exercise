@@ -1,19 +1,43 @@
 package com.dfz.entity;
 
+import java.util.List;
+
 public class Goods {
     private Integer gId;
 
     private String gName;
 
-    private Integer gPrice;
+    private Float gPrice;
 
     private String gCommon;
 
     private String gSaw;
 
+    public Integer getGradeId() {
+        return gradeId;
+    }
+
+    public void setGradeId(Integer gradeId) {
+        this.gradeId = gradeId;
+    }
+
     private Integer bId;
 
     private Integer flag;
+
+    private Integer gradeId;
+
+    public List<Size> getSize() {
+        return size;
+    }
+
+    public void setSize(List<Size> size) {
+        this.size = size;
+    }
+
+    private List<Size> size;
+
+
 
     public Integer getgId() {
         return gId;
@@ -31,11 +55,11 @@ public class Goods {
         this.gName = gName == null ? null : gName.trim();
     }
 
-    public Integer getgPrice() {
+    public Float getgPrice() {
         return gPrice;
     }
 
-    public void setgPrice(Integer gPrice) {
+    public void setgPrice(Float gPrice) {
         this.gPrice = gPrice;
     }
 
