@@ -13,6 +13,10 @@ public class Myvideo {
 
     private Integer myFlag;
 
+    private String myTrainsort;
+
+    private String myImgpath;
+
     public Integer getMyId() {
         return myId;
     }
@@ -59,5 +63,21 @@ public class Myvideo {
 
     public void setMyFlag(Integer myFlag) {
         this.myFlag = myFlag;
+    }
+
+    public String getMyTrainsort() {
+        return myTrainsort;
+    }
+
+    public void setMyTrainsort(String myTrainsort) {
+        this.myTrainsort = myTrainsort == null ? null : myTrainsort.trim();
+    }
+
+    public String getMyImgpath() {
+        return myImgpath;
+    }
+
+    public void setMyImgpath(String myImgpath) {
+        this.myImgpath = myImgpath == null ? null : myImgpath.trim();
     }
 }
