@@ -4,17 +4,47 @@
   <resultMap id="BaseResultMap" type="com.dfz.entity.Goods">
     <id column="g_id" jdbcType="INTEGER" property="gId" />
     <result column="g_name" jdbcType="VARCHAR" property="gName" />
-    <result column="g_price" jdbcType="INTEGER" property="gPrice" />
+    <result column="g_price" jdbcType="FLOAT" property="gPrice" />
     <result column="g_common" jdbcType="VARCHAR" property="gCommon" />
     <result column="g_saw" jdbcType="VARCHAR" property="gSaw" />
     <result column="b_id" jdbcType="INTEGER" property="bId" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="grade_id" jdbcType="INTEGER" property="gradeId" />
+
+  </resultMap>
+  <resultMap id="Goods" type="com.dfz.entity.Goods">
+    <id column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="g_name" jdbcType="VARCHAR" property="gName" />
+    <result column="g_price" jdbcType="FLOAT" property="gPrice" />
+    <result column="g_common" jdbcType="VARCHAR" property="gCommon" />
+    <result column="g_saw" jdbcType="VARCHAR" property="gSaw" />
+    <result column="b_id" jdbcType="INTEGER" property="bId" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="grade_id" jdbcType="INTEGER" property="gradeId" />
+
+    <collection property="size"
+                javaType="java.util.ArrayList"
+                resultMap="com.dfz.dao.SizeMapper.BaseResultMap">
+
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     g_id, g_name, g_price, g_common, g_saw, b_id, flag
   </sql>
+  <select id="findByGradeId" parameterType="int" resultMap="BaseResultMap">
+    SELECT g_name,g_price from t_goods where grade_id=#{gradeId}
+  </select>
+  <select id="findByGoodsId" parameterType="int" resultMap="Goods">
+    SELECT * FROM t_goods g
+      INNER JOIN goods_size gs
+      on g.g_id=gs.g_id
+      INNER JOIN t_size s
+      on gs.s_id=s.s_id
+      where g.g_id=#{goodsId}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_goods
     where g_id = #{gId,jdbcType=INTEGER}

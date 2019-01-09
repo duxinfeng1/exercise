@@ -3,6 +3,8 @@ package com.dfz.dao;
 import com.dfz.entity.Goods;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 public interface GoodsMapper {
     int deleteByPrimaryKey(Integer gId);
 
@@ -15,4 +17,9 @@ public interface GoodsMapper {
     int updateByPrimaryKeySelective(Goods record);
 
     int updateByPrimaryKey(Goods record);
+
+    List<Goods> findByGradeId(int gradeId);
+
+    List<Goods> findByGoodsId(int goodsId);
+
 }
