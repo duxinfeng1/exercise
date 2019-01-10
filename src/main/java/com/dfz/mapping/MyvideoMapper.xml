@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dfz.dao.MyvideoMapper">
-  <resultMap id="BaseResultMap" type="com.dfz.entity.Myvideo">
+<mapper namespace="com.dfz.dao.MyVideoMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.MyVideo">
     <id column="my_id" jdbcType="INTEGER" property="myId" />
     <result column="my_project" jdbcType="VARCHAR" property="myProject" />
     <result column="my_info" jdbcType="VARCHAR" property="myInfo" />
@@ -10,9 +10,11 @@
     <result column="my_flag" jdbcType="INTEGER" property="myFlag" />
     <result column="my_trainsort" jdbcType="VARCHAR" property="myTrainsort" />
     <result column="my_imgpath" jdbcType="VARCHAR" property="myImgpath" />
+    <result column="my_parent" jdbcType="VARCHAR" property="myParent" />
   </resultMap>
   <sql id="Base_Column_List">
-    my_id, my_project, my_info, my_difficulty, my_cycle, my_flag, my_trainsort, my_imgpath
+    my_id, my_project, my_info, my_difficulty, my_cycle, my_flag, my_trainsort, my_imgpath, 
+    my_parent
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,15 +26,17 @@
     delete from t_myvideo
     where my_id = #{myId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dfz.entity.Myvideo">
+  <insert id="insert" parameterType="com.dfz.entity.MyVideo">
     insert into t_myvideo (my_id, my_project, my_info, 
       my_difficulty, my_cycle, my_flag, 
-      my_trainsort, my_imgpath)
+      my_trainsort, my_imgpath, my_parent
+      )
     values (#{myId,jdbcType=INTEGER}, #{myProject,jdbcType=VARCHAR}, #{myInfo,jdbcType=VARCHAR}, 
       #{myDifficulty,jdbcType=INTEGER}, #{myCycle,jdbcType=VARCHAR}, #{myFlag,jdbcType=INTEGER}, 
-      #{myTrainsort,jdbcType=VARCHAR}, #{myImgpath,jdbcType=VARCHAR})
+      #{myTrainsort,jdbcType=VARCHAR}, #{myImgpath,jdbcType=VARCHAR}, #{myParent,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dfz.entity.Myvideo">
+  <insert id="insertSelective" parameterType="com.dfz.entity.MyVideo">
     insert into t_myvideo
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="myId != null">
@@ -58,6 +62,9 @@
       </if>
       <if test="myImgpath != null">
         my_imgpath,
+      </if>
+      <if test="myParent != null">
+        my_parent,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -85,9 +92,12 @@
       <if test="myImgpath != null">
         #{myImgpath,jdbcType=VARCHAR},
       </if>
+      <if test="myParent != null">
+        #{myParent,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Myvideo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.MyVideo">
     update t_myvideo
     <set>
       <if test="myProject != null">
@@ -111,10 +121,13 @@
       <if test="myImgpath != null">
         my_imgpath = #{myImgpath,jdbcType=VARCHAR},
       </if>
+      <if test="myParent != null">
+        my_parent = #{myParent,jdbcType=VARCHAR},
+      </if>
     </set>
     where my_id = #{myId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Myvideo">
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.MyVideo">
     update t_myvideo
     set my_project = #{myProject,jdbcType=VARCHAR},
       my_info = #{myInfo,jdbcType=VARCHAR},
@@ -122,7 +135,8 @@
       my_cycle = #{myCycle,jdbcType=VARCHAR},
       my_flag = #{myFlag,jdbcType=INTEGER},
       my_trainsort = #{myTrainsort,jdbcType=VARCHAR},
-      my_imgpath = #{myImgpath,jdbcType=VARCHAR}
+      my_imgpath = #{myImgpath,jdbcType=VARCHAR},
+      my_parent = #{myParent,jdbcType=VARCHAR}
     where my_id = #{myId,jdbcType=INTEGER}
   </update>
 </mapper>

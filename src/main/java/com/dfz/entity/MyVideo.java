@@ -1,6 +1,6 @@
 package com.dfz.entity;
 
-public class Myvideo {
+public class MyVideo {
     private Integer myId;
 
     private String myProject;
@@ -16,6 +16,8 @@ public class Myvideo {
     private String myTrainsort;
 
     private String myImgpath;
+
+    private String myParent;
 
     public Integer getMyId() {
         return myId;
@@ -79,5 +81,13 @@ public class Myvideo {
 
     public void setMyImgpath(String myImgpath) {
         this.myImgpath = myImgpath == null ? null : myImgpath.trim();
+    }
+
+    public String getMyParent() {
+        return myParent;
+    }
+
+    public void setMyParent(String myParent) {
+        this.myParent = myParent == null ? null : myParent.trim();
     }
 }
