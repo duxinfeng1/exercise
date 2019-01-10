@@ -139,4 +139,22 @@
       my_parent = #{myParent,jdbcType=VARCHAR}
     where my_id = #{myId,jdbcType=INTEGER}
   </update>
+  <select id="findByParent" parameterType="string" resultMap="BaseResultMap">
+    SELECT my_trainsort from t_myvideo WHERE my_parent=#{myParent}
+  </select>
+  <select id="findBySort" parameterType="string" resultMap="BaseResultMap" >
+    SELECT <include refid="Base_Column_List" /> from t_myvideo WHERE my_trainsort=#{trainSort}
+  </select>
+  <select id="findVideoByProject" parameterType="string" resultMap="BaseResultMap">
+    SELECT tv.tv_name from t_vedio tv
+    INNER JOIN t_myvideo tm
+    ON tv.my_id=tm.my_id
+    WHERE tm.my_project=#{project}
+  </select>
+  <select id="findVideoTrainById" parameterType="int" resultMap="BaseResultMap">
+    select tv.my_project from t_myvideo tv
+    INNER JOIN t_video_user tu
+    ON tv.my_id=tu.my_id
+    WHERE tu.d_id=#{uId}
+  </select>
 </mapper>

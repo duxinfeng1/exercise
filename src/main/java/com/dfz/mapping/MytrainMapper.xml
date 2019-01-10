@@ -125,4 +125,7 @@
       mt_imgpath = #{mtImgpath,jdbcType=VARCHAR}
     where mt_id = #{mtId,jdbcType=INTEGER}
   </update>
+  <select id="">
+
+  </select>
 </mapper>
