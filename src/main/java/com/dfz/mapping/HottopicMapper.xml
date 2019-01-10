@@ -16,6 +16,30 @@
     from t_hottopic
     where th_id = #{thId,jdbcType=INTEGER}
   </select>
+
+  <select id="findUserNumberByThId" parameterType="java.lang.Integer" resultType="int">
+   SELECT COUNT( DISTINCT ud.d_id) FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE th.th_id = #{thId}
+  </select>
+
+  <select id="findAllUserByThId" parameterType="java.lang.Integer" resultType="com.dfz.vo.UserDetailVo">
+  SELECT  distinct ud.d_id dId, ud.d_name dName,ud.d_image dImage FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE th.th_id = #{thId}
+  </select>
+
+  <select id="findUserByPage" parameterType="java.lang.Integer" resultType="com.dfz.vo.UserDetailVo">
+  SELECT  distinct ud.d_id dId, ud.d_name dName,ud.d_image dImage FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE  th.th_id = #{thId} limit 0,4
+  </select>
+
+  <select id="findAllHottopics" resultMap="BaseResultMap">
+   select * from t_hottopic
+  </select>
+
+  <select id="findHottopicByThId" resultMap="BaseResultMap">
+   select * from t_hottopic where th_id = #{thId}
+  </select>
+
+  <select id="findTheNumberOfReleaseByThId" resultType="int">
+   SELECT count(*) FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id WHERE th.th_id=#{thId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_hottopic
     where th_id = #{thId,jdbcType=INTEGER}
