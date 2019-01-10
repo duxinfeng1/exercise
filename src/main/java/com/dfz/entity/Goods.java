@@ -25,7 +25,17 @@ public class Goods {
 
     private Integer flag;
 
+    public List<Img> getImgs() {
+        return imgs;
+    }
+
+    public void setImgs(List<Img> imgs) {
+        this.imgs = imgs;
+    }
+
     private Integer gradeId;
+
+    private List<Img> imgs;
 
     public List<Size> getSize() {
         return size;
@@ -37,7 +47,15 @@ public class Goods {
 
     private List<Size> size;
 
+    private String imgUrl;
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public Integer getgId() {
         return gId;

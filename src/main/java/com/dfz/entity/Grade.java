@@ -1,5 +1,7 @@
 package com.dfz.entity;
 
+import java.util.List;
+
 public class Grade {
     private Integer gradeId;
 
@@ -8,6 +10,16 @@ public class Grade {
     private Integer level;
 
     private Integer flag;
+
+    private List<Goods> goods;
+
+    public List<Goods> getGoods() {
+        return goods;
+    }
+
+    public void setGoods(List<Goods> goods) {
+        this.goods = goods;
+    }
 
     public Integer getGradeId() {
         return gradeId;

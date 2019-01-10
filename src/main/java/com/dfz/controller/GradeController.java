@@ -17,10 +17,33 @@ public class GradeController {
     @Autowired
     private IGradeService gradeS;
 
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品类型接口")
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商品类型接口")
     @GetMapping("/grade.do")
     public ResultVo findAll() {
         ResultVo vo = gradeS.findAll();
         return vo;
     }
+
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商城主页运动服饰接口")
+    @GetMapping("/sportsWear.do")
+    public ResultVo findOne() {
+        ResultVo vo = gradeS.findOne();
+        return vo;
+    }
+
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商城主页运动装备接口")
+    @GetMapping("/equipment.do")
+    public ResultVo findTwo() {
+        ResultVo vo = gradeS.findTwo();
+        return vo;
+    }
+
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商城主页健康食品接口")
+    @GetMapping("/healthyFood.do")
+    public ResultVo findThree() {
+        ResultVo vo = gradeS.findThree();
+        return vo;
+    }
+
+
 }

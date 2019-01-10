@@ -7,9 +7,56 @@
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
   </resultMap>
+  <resultMap id="Grade" type="com.dfz.entity.Grade">
+    <id column="grade_id" jdbcType="INTEGER" property="gradeId" />
+    <result column="gradename" jdbcType="VARCHAR" property="gradename" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+
+    <collection property="goods"
+                javaType="java.util.ArrayList"
+                resultMap="com.dfz.dao.GoodsMapper.BaseResultMap">
+
+    </collection>
+
+  </resultMap>
+
   <sql id="Base_Column_List">
     grade_id, gradename, level, flag
   </sql>
+  <select id="selectByGradeId" resultMap="BaseResultMap">
+    SELECT * from grade g
+    INNER JOIN t_goods tg
+    on tg.grade_id=g.grade_id
+  </select>
+  <select id="selectOne" resultMap="Grade">
+     SELECT gd.grade_id,gd.gradename,g_name,g_price,i.imgurl from t_goods g
+      INNER JOIN grade gd
+      on g.grade_id=gd.grade_id
+      INNER JOIN t_img i
+      on g.g_id=i.id
+      WHERE gd.grade_id=1
+      LIMIT 4
+  </select>
+  <select id="selectTwo" resultMap="Grade">
+    SELECT gd.grade_id,gd.gradename,g_name,g_price,i.imgurl from t_goods g
+    INNER JOIN grade gd
+    on g.grade_id=gd.grade_id
+    INNER JOIN t_img i
+    on g.g_id=i.id
+    WHERE gd.grade_id=2
+    LIMIT 4
+  </select>
+  <select id="selectThree" resultMap="Grade">
+    SELECT gd.grade_id,gd.gradename,g_name,g_price,i.imgurl from t_goods g
+    INNER JOIN grade gd
+    on g.grade_id=gd.grade_id
+    INNER JOIN t_img i
+    on g.g_id=i.id
+    WHERE gd.grade_id=3
+    LIMIT 4
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List" />
     FROM grade

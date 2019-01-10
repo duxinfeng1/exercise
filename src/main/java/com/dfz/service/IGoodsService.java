@@ -10,4 +10,7 @@ public interface IGoodsService {
     //根据商品id查询商品详情
     ResultVo findByGoodsId(int goodsId);
 
+    //通过商品id查询商品图片
+    ResultVo findImg(int goodsId);
+
 }

@@ -7,10 +7,14 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="a_adress" jdbcType="VARCHAR" property="aAdress" />
     <result column="d_id" jdbcType="INTEGER" property="dId" />
+    <result column="a_detail" jdbcType="INTEGER" property="aDetail" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, phone, a_adress, d_id
+    id, name, phone, a_adress, d_id, a_detail
   </sql>
+  <select id="selectByUserId" parameterType="int" resultMap="BaseResultMap">
+    SELECT * from t_adress WHERE d_id=#{dId}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
