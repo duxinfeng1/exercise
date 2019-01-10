@@ -11,4 +11,5 @@ public interface HottopicService {
     ResultVo findAllMessageByThId(Integer thId);
 
     ResultVo findAllUserByThId(Integer thId);
+
 }

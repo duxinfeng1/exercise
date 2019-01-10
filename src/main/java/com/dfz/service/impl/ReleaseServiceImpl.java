@@ -18,6 +18,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 
     @Override
     public ResultVo findAllReleaseByTrId(Integer thId) {
-        return null;
+        List<ReleaseAndUserVo> releasesByThIdAndTrId = releaseMapper.findReleasesByThIdAndTrId(thId);
+        return ResultVo.setOK(releasesByThIdAndTrId);
     }
 }

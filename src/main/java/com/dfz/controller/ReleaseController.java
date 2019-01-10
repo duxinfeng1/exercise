@@ -18,7 +18,7 @@ public class ReleaseController {
 
     @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品名称价格接口")
     @PostMapping("/findAllReleaseByThId.do")
-    public ResultVo findAllReleaseByThId(Integer thId) {
-        return releaseService.findAllReleaseByThId(thId);
+    public ResultVo findReleasesByThIdAndTrId(Integer thId) {
+        return releaseService.findAllReleaseByTrId(thId);
     }
 }
