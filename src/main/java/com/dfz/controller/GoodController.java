@@ -17,7 +17,7 @@ public class GoodController {
     @Autowired
     private IGoodsService goodsService;
     //通过商品类型id查找商品
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品名称价格接口")
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商品名称价格接口")
     @PostMapping("/goods.do")
     public ResultVo findByGradeId(Integer gradeId) {
         ResultVo vo = goodsService.findByGradeId(gradeId);
@@ -25,10 +25,20 @@ public class GoodController {
     }
 
     //通过商品id查询出来商品详情
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品详情接口")
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商品详情接口")
     @PostMapping("/goodsDetail.do")
     public ResultVo findByGoodsId(Integer goodsId) {
         ResultVo vo = goodsService.findByGoodsId(goodsId);
         return vo;
     }
+
+    //通过商品id查询出来商品详情
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "商品详情的图片")
+    @PostMapping("/goodsImg.do")
+    public ResultVo findImg(Integer goodsId) {
+        ResultVo vo = goodsService.findImg(goodsId);
+        return vo;
+    }
+
+
 }

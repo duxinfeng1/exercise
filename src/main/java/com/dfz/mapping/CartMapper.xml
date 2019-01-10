@@ -8,6 +8,8 @@
     <result column="g_num" jdbcType="INTEGER" property="gNum" />
     <result column="s_size" jdbcType="VARCHAR" property="sSize" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+
   </resultMap>
   <sql id="Base_Column_List">
     id, g_name, g_price, g_num, s_size, flag

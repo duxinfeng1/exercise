@@ -2,6 +2,8 @@ package com.dfz.dao;
 
 import com.dfz.entity.Address;
 
+import java.util.List;
+
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    List<Address> selectByUserId(int dId);
+
+
 }
