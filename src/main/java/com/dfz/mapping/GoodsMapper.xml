@@ -10,6 +10,7 @@
     <result column="b_id" jdbcType="INTEGER" property="bId" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="grade_id" jdbcType="INTEGER" property="gradeId" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgUrl" />
 
   </resultMap>
   <resultMap id="Goods" type="com.dfz.entity.Goods">
@@ -21,6 +22,7 @@
     <result column="b_id" jdbcType="INTEGER" property="bId" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="grade_id" jdbcType="INTEGER" property="gradeId" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgUrl" />
 
     <collection property="size"
                 javaType="java.util.ArrayList"
@@ -31,8 +33,12 @@
   <sql id="Base_Column_List">
     g_id, g_name, g_price, g_common, g_saw, b_id, flag
   </sql>
+
   <select id="findByGradeId" parameterType="int" resultMap="BaseResultMap">
-    SELECT g_name,g_price from t_goods where grade_id=#{gradeId}
+     SELECT g_name,g_price,i.imgurl from t_goods g
+     INNER JOIN t_img i
+     on g.g_id=i.id
+     where grade_id=#{gradeId}
   </select>
   <select id="findByGoodsId" parameterType="int" resultMap="Goods">
     SELECT * FROM t_goods g

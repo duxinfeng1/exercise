@@ -11,6 +11,18 @@ public class Address {
 
     private Integer dId;
 
+    public String getaDetail() {
+        return aDetail;
+    }
+
+    public void setaDetail(String aDetail) {
+        this.aDetail = aDetail;
+    }
+
+    private String aDetail;
+
+
+
     public Integer getId() {
         return id;
     }

@@ -18,4 +18,13 @@ public interface GradeMapper {
     int updateByPrimaryKey(Grade record);
 
     List<Grade> selectAll();
+
+    List<Grade> selectByGradeId();
+
+    //运动服饰
+    List<Grade> selectOne();
+    //运动装备
+    List<Grade> selectTwo();
+    //健康食品
+    List<Grade> selectThree();
 }

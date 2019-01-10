@@ -22,4 +22,6 @@ public interface GoodsMapper {
 
     List<Goods> findByGoodsId(int goodsId);
 
+
+
 }
