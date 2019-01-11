@@ -18,7 +18,7 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
 
     //查询购物车内所有订单信息
-    List<Cart> selectAll();
+    List<Cart> selectAll(Integer uId);
 
 
 

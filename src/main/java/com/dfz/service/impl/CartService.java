@@ -15,9 +15,9 @@ public class CartService implements ICartService{
 
 
     @Override
-    public ResultVo findAll() {
-       if(cartDao.selectAll() != null){
-           return ResultVo.setOK(cartDao.selectAll());
+    public ResultVo findAll(Integer uId) {
+       if(cartDao.selectAll(uId) != null){
+           return ResultVo.setOK(cartDao.selectAll(uId));
        }else {
            return ResultVo.setERROR("暂无信息");
        }

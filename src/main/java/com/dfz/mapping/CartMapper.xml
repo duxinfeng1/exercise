@@ -16,8 +16,8 @@
   <sql id="Base_Column_List">
     id, g_name, g_price, g_num, s_size, flag
   </sql>
-  <select id="selectAll" resultMap="BaseResultMap">
-    SELECT * FROM t_cart where flag=0
+  <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
+    SELECT * FROM t_cart where flag=0 AND u_id=#{uId}
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

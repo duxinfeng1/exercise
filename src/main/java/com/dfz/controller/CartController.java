@@ -21,8 +21,8 @@ public class CartController {
     //查询购物车中所有信息
     @GetMapping("/cartall.do")
     @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"商品"},value = "购物车所有订单信息接口")
-    public ResultVo findAll(){
-        ResultVo vo = cartService.findAll();
+    public ResultVo findAll(Integer uId){
+        ResultVo vo = cartService.findAll(uId);
         return vo;
     }
 
