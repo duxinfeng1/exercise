@@ -125,4 +125,10 @@
       mt_imgpath = #{mtImgpath,jdbcType=VARCHAR}
     where mt_id = #{mtId,jdbcType=INTEGER}
   </update>
+  <select id="findMyTrainById" parameterType="int" resultMap="BaseResultMap">
+    select * from t_mytrain tm
+    INNER JOIN t_train_user tu
+    on tm.mt_id=tu.mt_id
+    where tu.d_id=#{id}
+  </select>
 </mapper>

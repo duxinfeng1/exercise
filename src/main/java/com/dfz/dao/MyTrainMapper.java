@@ -2,6 +2,8 @@ package com.dfz.dao;
 
 import com.dfz.entity.MyTrain;
 
+import java.util.List;
+
 public interface MyTrainMapper {
     int deleteByPrimaryKey(Integer mtId);
 
@@ -14,4 +16,7 @@ public interface MyTrainMapper {
     int updateByPrimaryKeySelective(MyTrain record);
 
     int updateByPrimaryKey(MyTrain record);
+
+    List<MyTrain> findMyTrainById(Integer id);
+
 }
