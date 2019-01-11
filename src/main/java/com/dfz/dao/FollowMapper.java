@@ -1,6 +1,9 @@
 package com.dfz.dao;
 
 import com.dfz.entity.Follow;
+import com.dfz.entity.Funs;
+
+import java.util.Map;
 
 public interface FollowMapper {
     int deleteByPrimaryKey(Integer tfId);
@@ -14,4 +17,7 @@ public interface FollowMapper {
     int updateByPrimaryKeySelective(Follow record);
 
     int updateByPrimaryKey(Follow record);
+
+    //通过登录用户ID与其他用户ID两个参数来判断是否已关注
+    Follow findfollowByTwoId(Map<String,Integer> map);
 }

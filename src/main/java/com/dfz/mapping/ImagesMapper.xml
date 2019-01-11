@@ -15,6 +15,12 @@
     from t_images
     where ti_id = #{tiId,jdbcType=INTEGER}
   </select>
+  <select id="selectImagesByTrId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT ti.ti_url FROM t_images ti
+    INNER JOIN t_release tr
+    ON ti.tr_id = tr.tr_id
+    WHERE tr.tr_id = #{trId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_images
     where ti_id = #{tiId,jdbcType=INTEGER}

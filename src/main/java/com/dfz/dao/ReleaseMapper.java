@@ -23,4 +23,5 @@ public interface ReleaseMapper {
 
     List<ReleaseAndUserVo> findReleasesByThIdAndTrId(Integer thId);
 
+    int findReplyCount(Integer grId);
 }
