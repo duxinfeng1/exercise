@@ -2,6 +2,8 @@ package com.dfz.dao;
 
 import com.dfz.entity.Video;
 
+import java.util.List;
+
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer tvId);
 
@@ -14,4 +16,6 @@ public interface VideoMapper {
     int updateByPrimaryKeySelective(Video record);
 
     int updateByPrimaryKey(Video record);
+    //查找每个课程的所有视频
+    List<Video> findVideoByProject(String project);
 }

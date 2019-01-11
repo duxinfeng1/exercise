@@ -7,7 +7,7 @@ public interface MyVideoService {
 
     ResultVo findBySort(String sort);
 
-    ResultVo findVideoByProect(String project);
+
 
     ResultVo findVideoTrainById(Integer id);
 }

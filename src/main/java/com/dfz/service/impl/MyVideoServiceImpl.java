@@ -13,28 +13,23 @@ import java.util.List;
 @Service
 public class MyVideoServiceImpl implements MyVideoService {
     @Autowired
-    private MyVideoMapper videoDao;
+    private MyVideoMapper myVideoDao;
     @Override
     public ResultVo findByParent(String parent) {
-        List<MyVideo> list = videoDao.findByParent(parent);
+        List<MyVideo> list = myVideoDao.findByParent(parent);
         return ResultVo.setOK(list);
     }
 
     @Override
     public ResultVo findBySort(String sort) {
-        List<MyVideo> list = videoDao.findBySort(sort);
+        List<MyVideo> list = myVideoDao.findBySort(sort);
         return ResultVo.setOK(list);
     }
 
-    @Override
-    public ResultVo findVideoByProect(String project) {
-        List<Video> list = videoDao.findVideoByProject(project);
-        return ResultVo.setOK(list);
-    }
 
     @Override
     public ResultVo findVideoTrainById(Integer id) {
-        List<MyVideo> list= videoDao.findVideoTrainById(id);
+        List<MyVideo> list= myVideoDao.findVideoTrainById(id);
         return ResultVo.setOK(list);
     }
 }

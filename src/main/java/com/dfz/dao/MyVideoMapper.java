@@ -21,8 +21,7 @@ public interface MyVideoMapper {
     List<MyVideo> findByParent(String parent);
     //根据分类菜单查找具体课程列表
     List<MyVideo> findBySort(String sort);
-    //查找每个课程的所有视频
-    List<Video> findVideoByProject(String project);
+
     //查找从视频训练中加入我的
     List<MyVideo> findVideoTrainById(Integer id);
 

@@ -28,15 +28,10 @@ public class MyVideoController {
         return videoService.findBySort(trainSort);
     }
 
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"训练"},value = "视频详情视频列表接口")
-    @GetMapping("/findVideoByProject")
-    public  ResultVo findVideoByProject(String project){
-        return videoService.findVideoByProect(project);
-    }
 
 
     @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"我的"},value = "查询登录用户的视频训练列表")
-    @GetMapping("/findVideoTrainById")
+    @GetMapping("/findVideoTrainById.do")
     public  ResultVo findVideoTrainById(Integer id){
         return videoService.findVideoTrainById(id);
     }
