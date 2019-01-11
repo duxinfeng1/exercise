@@ -2,6 +2,8 @@ package com.dfz.dao;
 
 import com.dfz.entity.Funs;
 
+import java.util.Map;
+
 public interface FunsMapper {
     int deleteByPrimaryKey(Integer tfId);
 
@@ -14,4 +16,5 @@ public interface FunsMapper {
     int updateByPrimaryKeySelective(Funs record);
 
     int updateByPrimaryKey(Funs record);
+
 }

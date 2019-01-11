@@ -23,6 +23,22 @@
     from t_reply
     where re_id = #{reId,jdbcType=INTEGER}
   </select>
+
+  <select id="findMainReply" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReplyVo">
+    select ud.d_id dId, ud.d_name dName,ty.re_id reId,ty.re_info reInfo,ty.re_time reTime,ty.re_praise rePraise FROM t_reply ty
+    INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.tr_id = ty.gr_id
+    INNER JOIN user_details ud
+    ON ud.d_id = ty.d_id
+    WHERE ty.gr_id = #{grId} and ty.parentid = -1 ORDER BY ty.re_praise
+  </select>
+
+  <select id="findReReply" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReReplyVo">
+    SELECT ty.d_id dId,ty.re_user_id reUserId,ty.re_info reInfo, ty.re_time reTime FROM t_reply ty
+    INNER JOIN t_reply tr
+    ON ty.parentid = tr.re_id
+    where tr.re_id = #{reId} ORDER BY ty.re_time;
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_reply
     where re_id = #{reId,jdbcType=INTEGER}

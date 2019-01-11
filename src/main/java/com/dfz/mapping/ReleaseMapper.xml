@@ -14,12 +14,20 @@
     tr_id, tr_info, th_id, d_id, tr_praise, tr_reporttime, tr_flag
   </sql>
 
+  <select id="findReplyCount" parameterType="java.lang.Integer" resultType="int">
+    select COUNT(*) FROM t_reply ty
+    INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.tr_id = ty.gr_id
+    INNER JOIN user_details ud
+    ON ud.d_id = ty.d_id
+    WHERE ty.gr_id = #{grId} and ty.parentid = -1;
+  </select>
+
   <select id="findReleasesByThIdAndTrId" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReleaseAndUserVo">
-   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_praise trPraise,tr.tr_reporttime trReporttime,ti.ti_url tiUrl FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id LEFT JOIN t_images ti ON ti.tr_id = tr.tr_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE th.th_id = #{thId} order by tr.tr_id desc
+   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE th.th_id = #{thId} order by tr.tr_id desc
   </select>
 
   <select id="findReleasesByThIdAndPraise" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReleaseAndUserVo">
-   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_praise trPraise,tr.tr_reporttime trReporttime,ti.ti_url tiUrl FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id LEFT JOIN t_images ti ON ti.tr_id = tr.tr_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE tr.tr_praise > 20 and th.th_id = #{thId} order by tr.tr_praise asc
+   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE tr.tr_praise > 20 and th.th_id = #{thId} order by tr.tr_praise asc
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -20,16 +20,22 @@ public interface HottopicMapper {
 
     int updateByPrimaryKey(Hottopic record);
 
+    //查找当前所有热议话题+每个热议话题中的参与人数
     List<Hottopic> findAllHottopics();
 
+    //查找指定热议话题id下的动态数量+每个热议话题中的参与人数
     int findTheNumberOfReleaseByThId(Integer thId);
 
+    //查找指定热议话题id下的用户信息列表
     List<UserDetailVo> findAllUserByThId(Integer thId);
 
+    //查找指定热议话题id下的四条用户信息
     List<UserDetailVo> findAllUserByPage(Integer thId);
 
+    //查找参与该热议话题id下的用户的数量
     int findUserNumberByThId(Integer thId);
 
+    //查找指定热议话题的信息
     Hottopic findHottopicByThId(Integer thId);
 
 
