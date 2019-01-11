@@ -1,8 +1,6 @@
 package com.dfz.entity;
 
-import java.util.Date;
-
-public class Mytrain {
+public class MyTrain {
     private Integer mtId;
 
     private String mtName;
@@ -11,7 +9,7 @@ public class Mytrain {
 
     private Integer mtLooptime;
 
-    private Date mtTimes;
+    private Integer mtTimes;
 
     private Integer mtFlag;
 
@@ -51,11 +49,11 @@ public class Mytrain {
         this.mtLooptime = mtLooptime;
     }
 
-    public Date getMtTimes() {
+    public Integer getMtTimes() {
         return mtTimes;
     }
 
-    public void setMtTimes(Date mtTimes) {
+    public void setMtTimes(Integer mtTimes) {
         this.mtTimes = mtTimes;
     }
 

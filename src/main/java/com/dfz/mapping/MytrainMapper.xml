@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dfz.dao.MytrainMapper">
-  <resultMap id="BaseResultMap" type="com.dfz.entity.Mytrain">
+<mapper namespace="com.dfz.dao.MyTrainMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.MyTrain">
     <id column="mt_id" jdbcType="INTEGER" property="mtId" />
     <result column="mt_name" jdbcType="VARCHAR" property="mtName" />
     <result column="mt_info" jdbcType="VARCHAR" property="mtInfo" />
     <result column="mt_looptime" jdbcType="INTEGER" property="mtLooptime" />
-    <result column="mt_times" jdbcType="TIME" property="mtTimes" />
+    <result column="mt_times" jdbcType="INTEGER" property="mtTimes" />
     <result column="mt_flag" jdbcType="INTEGER" property="mtFlag" />
     <result column="mt_free" jdbcType="INTEGER" property="mtFree" />
     <result column="mt_imgpath" jdbcType="VARCHAR" property="mtImgpath" />
@@ -24,15 +24,15 @@
     delete from t_mytrain
     where mt_id = #{mtId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dfz.entity.Mytrain">
+  <insert id="insert" parameterType="com.dfz.entity.MyTrain">
     insert into t_mytrain (mt_id, mt_name, mt_info, 
       mt_looptime, mt_times, mt_flag, 
       mt_free, mt_imgpath)
     values (#{mtId,jdbcType=INTEGER}, #{mtName,jdbcType=VARCHAR}, #{mtInfo,jdbcType=VARCHAR}, 
-      #{mtLooptime,jdbcType=INTEGER}, #{mtTimes,jdbcType=TIME}, #{mtFlag,jdbcType=INTEGER}, 
+      #{mtLooptime,jdbcType=INTEGER}, #{mtTimes,jdbcType=INTEGER}, #{mtFlag,jdbcType=INTEGER}, 
       #{mtFree,jdbcType=INTEGER}, #{mtImgpath,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dfz.entity.Mytrain">
+  <insert id="insertSelective" parameterType="com.dfz.entity.MyTrain">
     insert into t_mytrain
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mtId != null">
@@ -74,7 +74,7 @@
         #{mtLooptime,jdbcType=INTEGER},
       </if>
       <if test="mtTimes != null">
-        #{mtTimes,jdbcType=TIME},
+        #{mtTimes,jdbcType=INTEGER},
       </if>
       <if test="mtFlag != null">
         #{mtFlag,jdbcType=INTEGER},
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.Mytrain">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.MyTrain">
     update t_mytrain
     <set>
       <if test="mtName != null">
@@ -100,7 +100,7 @@
         mt_looptime = #{mtLooptime,jdbcType=INTEGER},
       </if>
       <if test="mtTimes != null">
-        mt_times = #{mtTimes,jdbcType=TIME},
+        mt_times = #{mtTimes,jdbcType=INTEGER},
       </if>
       <if test="mtFlag != null">
         mt_flag = #{mtFlag,jdbcType=INTEGER},
@@ -114,15 +114,21 @@
     </set>
     where mt_id = #{mtId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.Mytrain">
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.MyTrain">
     update t_mytrain
     set mt_name = #{mtName,jdbcType=VARCHAR},
       mt_info = #{mtInfo,jdbcType=VARCHAR},
       mt_looptime = #{mtLooptime,jdbcType=INTEGER},
-      mt_times = #{mtTimes,jdbcType=TIME},
+      mt_times = #{mtTimes,jdbcType=INTEGER},
       mt_flag = #{mtFlag,jdbcType=INTEGER},
       mt_free = #{mtFree,jdbcType=INTEGER},
       mt_imgpath = #{mtImgpath,jdbcType=VARCHAR}
     where mt_id = #{mtId,jdbcType=INTEGER}
   </update>
+  <select id="findMyTrainById" parameterType="int" resultMap="BaseResultMap">
+    select * from t_mytrain tm
+    INNER JOIN t_train_user tu
+    on tm.mt_id=tu.mt_id
+    where tu.d_id=#{id}
+  </select>
 </mapper>

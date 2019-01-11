@@ -29,8 +29,8 @@ public class GradeService implements IGradeService{
     }
     //运动装备
     public ResultVo findTwo(){
-        if(gradeDao.selectOne() != null){
-            return ResultVo.setOK(gradeDao.selectOne());
+        if(gradeDao.selectTwo() != null){
+            return ResultVo.setOK(gradeDao.selectTwo());
         }else {
             return ResultVo.setERROR("暂无该商品");
         }
@@ -38,8 +38,8 @@ public class GradeService implements IGradeService{
 
     //健康食品
     public ResultVo findThree(){
-        if(gradeDao.selectOne() != null){
-            return ResultVo.setOK(gradeDao.selectOne());
+        if(gradeDao.selectThree() != null){
+            return ResultVo.setOK(gradeDao.selectThree());
         }else {
             return ResultVo.setERROR("暂无该商品");
         }

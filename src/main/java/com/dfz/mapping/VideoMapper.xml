@@ -79,4 +79,10 @@
       my_id = #{myId,jdbcType=INTEGER}
     where tv_id = #{tvId,jdbcType=INTEGER}
   </update>
+  <select id="findVideoByProject" parameterType="string" resultMap="BaseResultMap">
+    SELECT tv.tv_name from t_vedio tv
+    INNER JOIN t_myvideo tm
+    ON tv.my_id=tm.my_id
+    WHERE tm.my_project=#{project}
+  </select>
 </mapper>

@@ -11,6 +11,16 @@
     <sql id="Base_Column_List">
     u_id, u_phone, u_email, u_password, u_flag
   </sql>
+    <select id="insertPhone" parameterType="map">
+        INSERT into t_user(u_phone, u_password) VALUES(#{phone}, #{password})
+
+    </select>
+
+    <select id="insertEmail" parameterType="map">
+        INSERT into t_user(u_phone, u_password) VALUES(#{email}, #{password})
+
+    </select>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -90,4 +100,10 @@
       u_flag = #{uFlag,jdbcType=INTEGER}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
+    <select id="findByPhone" parameterType="string" resultMap="BaseResultMap">
+        SELECT * from t_user where u_phone=#{phone}
+    </select>
+    <select id="findByEamil" parameterType="string" resultMap="BaseResultMap">
+        SELECT * from t_user where u_email=#{email}
+    </select>
 </mapper>
