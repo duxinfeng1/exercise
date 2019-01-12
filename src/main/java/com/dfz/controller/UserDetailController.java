@@ -16,7 +16,7 @@ public class UserDetailController {
     @Autowired
     private UserDetailService userDetailService;
 
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品名称价格接口")
+    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "通过用户id查找用户信息")
     @PostMapping("/findUserBydId.do")
     public ResultVo findUserBydId(Integer dId) {
         return userDetailService.findUserNameBydId(dId);

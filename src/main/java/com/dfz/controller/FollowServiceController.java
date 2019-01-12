@@ -17,13 +17,13 @@ public class FollowServiceController {
     @Autowired
     private FollowService followService;
 
-    @ApiOperation(notes = "直接调用，无需参数",tags = {"名次"},value = "查找当前所有热议话题")
+    @ApiOperation(notes = "直接调用，无需参数",tags = {"名次"},value = "关注用户")
     @PostMapping("/addFollow.do")
     public ResultVo addFollow(Integer uId,Integer dId) {
         return followService.addFollow(uId,dId);
     }
 
-    @ApiOperation(notes = "直接调用，无需参数",tags = {"名次"},value = "查找当前所有热议话题")
+    @ApiOperation(notes = "直接调用，无需参数",tags = {"名次"},value = "取消关注")
     @PostMapping("/updateFlag.do")
     public ResultVo updateFlag(Integer uId,Integer dId) {
         return followService.updateFlag(uId,dId);

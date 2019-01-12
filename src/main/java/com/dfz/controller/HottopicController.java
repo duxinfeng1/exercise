@@ -34,7 +34,11 @@ import org.springframework.web.bind.annotation.RestController;
         public ResultVo findAllMessageByThId(Integer uId, Integer thId) {
             return hottopicService.findAllMessageByThId(uId,thId);
         }
-
+        @ApiOperation(notes = "返回的是整个页面数据",tags = {"名次"},value = "查找该热议话题id下所有发过动态的用户")
+        @PostMapping("/findAllUserByThId.do")
+        public ResultVo findAllUserByThId(Integer thId) {
+            return hottopicService.findAllUserByThId(thId);
+        }
     }
 
 
