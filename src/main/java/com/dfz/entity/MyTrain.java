@@ -17,6 +17,10 @@ public class MyTrain {
 
     private String mtImgpath;
 
+    private String mtApparatus;
+
+    private String mtHard;
+
     public Integer getMtId() {
         return mtId;
     }
@@ -79,5 +83,21 @@ public class MyTrain {
 
     public void setMtImgpath(String mtImgpath) {
         this.mtImgpath = mtImgpath == null ? null : mtImgpath.trim();
+    }
+
+    public String getMtApparatus() {
+        return mtApparatus;
+    }
+
+    public void setMtApparatus(String mtApparatus) {
+        this.mtApparatus = mtApparatus == null ? null : mtApparatus.trim();
+    }
+
+    public String getMtHard() {
+        return mtHard;
+    }
+
+    public void setMtHard(String mtHard) {
+        this.mtHard = mtHard;
     }
 }

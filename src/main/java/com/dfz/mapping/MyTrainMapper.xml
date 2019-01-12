@@ -10,9 +10,18 @@
     <result column="mt_flag" jdbcType="INTEGER" property="mtFlag" />
     <result column="mt_free" jdbcType="INTEGER" property="mtFree" />
     <result column="mt_imgpath" jdbcType="VARCHAR" property="mtImgpath" />
+    <result column="mt_apparatus" jdbcType="VARCHAR" property="mtApparatus" />
+    <result column="mt_hard" jdbcType="VARCHAR" property="mtHard" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.dfz.vo.TrainVo">
+    <result column="mt_name" jdbcType="VARCHAR" property="mtName" />
+    <result column="mt_info" jdbcType="VARCHAR" property="mtInfo" />
+    <result column="mt_times" jdbcType="INTEGER" property="mtTimes" />
+    <result column="mt_hard" jdbcType="VARCHAR" property="mtHard" />
+    <result column="ta_part" jdbcType="VARCHAR" property="taPart" />
   </resultMap>
   <sql id="Base_Column_List">
-    mt_id, mt_name, mt_info, mt_looptime, mt_times, mt_flag, mt_free, mt_imgpath
+    mt_id, mt_name, mt_info, mt_looptime, mt_times, mt_flag, mt_free, mt_imgpath, mt_apparatus
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -27,10 +36,12 @@
   <insert id="insert" parameterType="com.dfz.entity.MyTrain">
     insert into t_mytrain (mt_id, mt_name, mt_info, 
       mt_looptime, mt_times, mt_flag, 
-      mt_free, mt_imgpath)
+      mt_free, mt_imgpath, mt_apparatus
+      )
     values (#{mtId,jdbcType=INTEGER}, #{mtName,jdbcType=VARCHAR}, #{mtInfo,jdbcType=VARCHAR}, 
       #{mtLooptime,jdbcType=INTEGER}, #{mtTimes,jdbcType=INTEGER}, #{mtFlag,jdbcType=INTEGER}, 
-      #{mtFree,jdbcType=INTEGER}, #{mtImgpath,jdbcType=VARCHAR})
+      #{mtFree,jdbcType=INTEGER}, #{mtImgpath,jdbcType=VARCHAR}, #{mtApparatus,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dfz.entity.MyTrain">
     insert into t_mytrain
@@ -59,6 +70,9 @@
       <if test="mtImgpath != null">
         mt_imgpath,
       </if>
+      <if test="mtApparatus != null">
+        mt_apparatus,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mtId != null">
@@ -84,6 +98,9 @@
       </if>
       <if test="mtImgpath != null">
         #{mtImgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="mtApparatus != null">
+        #{mtApparatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -111,6 +128,9 @@
       <if test="mtImgpath != null">
         mt_imgpath = #{mtImgpath,jdbcType=VARCHAR},
       </if>
+      <if test="mtApparatus != null">
+        mt_apparatus = #{mtApparatus,jdbcType=VARCHAR},
+      </if>
     </set>
     where mt_id = #{mtId,jdbcType=INTEGER}
   </update>
@@ -122,13 +142,31 @@
       mt_times = #{mtTimes,jdbcType=INTEGER},
       mt_flag = #{mtFlag,jdbcType=INTEGER},
       mt_free = #{mtFree,jdbcType=INTEGER},
-      mt_imgpath = #{mtImgpath,jdbcType=VARCHAR}
+      mt_imgpath = #{mtImgpath,jdbcType=VARCHAR},
+      mt_apparatus = #{mtApparatus,jdbcType=VARCHAR}
     where mt_id = #{mtId,jdbcType=INTEGER}
   </update>
   <select id="findMyTrainById" parameterType="int" resultMap="BaseResultMap">
-    select * from t_mytrain tm
+    select <include refid="Base_Column_List" /> from t_mytrain tm
     INNER JOIN t_train_user tu
     on tm.mt_id=tu.mt_id
-    where tu.d_id=#{id}
+    where tu.d_id=#{uId}
+  </select>
+  <select id="findByCondition" parameterType="map" resultMap="BaseResultMap1">
+    SELECT tm.mt_name,tm.mt_info,tm.mt_hard from t_mytrain tm
+    INNER JOIN t_train_action tt
+    on tm.mt_id=tt.mt_id
+    INNER JOIN t_action ta
+    on tt.ta_id=ta.ta_id
+    where 1=1
+    <if test="taPart!=null">
+      and tm.ta_part=#{taPart}
+    </if>
+    <if test="mtTimes!=null">
+      and tm.mt_times=#{mtTimes}
+    </if>
+    <if test="mtHard!=null">
+      and ta.ta_part=#{mtHard}
+    </if>
   </select>
 </mapper>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfz.dao.ActionDetailMapper">
+  <resultMap id="BaseResultMap" type="com.dfz.entity.ActionDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_actionname" jdbcType="VARCHAR" property="tActionname" />
+    <result column="t_actionnum" jdbcType="INTEGER" property="tActionnum" />
+    <result column="t_rest" jdbcType="INTEGER" property="tRest" />
+    <result column="t_else" jdbcType="VARCHAR" property="tElse" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, t_actionname, t_actionnum, t_rest, t_else
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_actiondetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_actiondetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dfz.entity.ActionDetail">
+    insert into t_actiondetail (id, t_actionname, t_actionnum, 
+      t_rest, t_else)
+    values (#{id,jdbcType=INTEGER}, #{tActionname,jdbcType=VARCHAR}, #{tActionnum,jdbcType=INTEGER}, 
+      #{tRest,jdbcType=INTEGER}, #{tElse,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dfz.entity.ActionDetail">
+    insert into t_actiondetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tActionname != null">
+        t_actionname,
+      </if>
+      <if test="tActionnum != null">
+        t_actionnum,
+      </if>
+      <if test="tRest != null">
+        t_rest,
+      </if>
+      <if test="tElse != null">
+        t_else,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tActionname != null">
+        #{tActionname,jdbcType=VARCHAR},
+      </if>
+      <if test="tActionnum != null">
+        #{tActionnum,jdbcType=INTEGER},
+      </if>
+      <if test="tRest != null">
+        #{tRest,jdbcType=INTEGER},
+      </if>
+      <if test="tElse != null">
+        #{tElse,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dfz.entity.ActionDetail">
+    update t_actiondetail
+    <set>
+      <if test="tActionname != null">
+        t_actionname = #{tActionname,jdbcType=VARCHAR},
+      </if>
+      <if test="tActionnum != null">
+        t_actionnum = #{tActionnum,jdbcType=INTEGER},
+      </if>
+      <if test="tRest != null">
+        t_rest = #{tRest,jdbcType=INTEGER},
+      </if>
+      <if test="tElse != null">
+        t_else = #{tElse,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dfz.entity.ActionDetail">
+    update t_actiondetail
+    set t_actionname = #{tActionname,jdbcType=VARCHAR},
+      t_actionnum = #{tActionnum,jdbcType=INTEGER},
+      t_rest = #{tRest,jdbcType=INTEGER},
+      t_else = #{tElse,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findActionDetailByName" parameterType="string" resultMap="BaseResultMap">
+    SELECT ta.t_actionname,ta.t_actionnum,ta.t_rest from t_actiondetail ta
+    INNER JOIN t_train_detail td
+    on ta.id=td.t_did
+    INNER JOIN t_mytrain tm
+    on td.t_mid=tm.mt_id
+    where tm.mt_name=#{mtName}
+  </select>
+</mapper>
