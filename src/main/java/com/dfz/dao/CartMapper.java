@@ -3,6 +3,7 @@ package com.dfz.dao;
 import com.dfz.entity.Cart;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CartMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,6 +21,9 @@ public interface CartMapper {
     //查询购物车内所有订单信息
     List<Cart> selectAll(Integer uId);
 
+    //查询购物车是否有相同名称的商品
+    Cart selectByGNameAndUId(Map<String, Object> map);
 
-
+    //更改购物车的商品数量
+    void updateNum(Map<String, Object> map);
 }

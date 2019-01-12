@@ -19,6 +19,12 @@
   <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
     SELECT * FROM t_cart where flag=0 AND u_id=#{uId}
   </select>
+  <select id="selectByGNameAndUId" parameterType="map" resultMap="BaseResultMap">
+    SELECT * from t_cart where g_name=#{gName} AND  u_id=#{uId}
+  </select>
+  <update id="updateNum" parameterType="map">
+    UPDATE t_cart set g_num=#{gNum} where id=#{id}
+  </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
