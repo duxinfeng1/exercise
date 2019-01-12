@@ -5,6 +5,7 @@
     <id column="tf_id" jdbcType="INTEGER" property="tfId" />
     <result column="tf_d_id" jdbcType="INTEGER" property="tfDId" />
     <result column="d_id" jdbcType="INTEGER" property="dId" />
+    <result column="tf_flag" jdbcType="INTEGER" property="tfFlag" />
   </resultMap>
   <sql id="Base_Column_List">
     tf_id, tf_d_id, d_id
@@ -15,22 +16,51 @@
     from t_follow
     where tf_id = #{tfId,jdbcType=INTEGER}
   </select>
+  <select id="findtfDIdByDId" parameterType="int" resultType="int">
+      SELECT tf.tf_d_id FROM t_follow tf
+      INNER JOIN user_details ud
+      ON ud.d_id = tf.d_id
+      WHERE ud.d_id = #{dId} and tf_flag = 0;
+  </select>
   <select id="findfollowByTwoId" parameterType="map" resultMap="BaseResultMap">
-    SELECT tf.tf_d_id FROM t_follow tf
+    SELECT * FROM t_follow tf
     INNER JOIN user_details ud
     ON tf.d_id = ud.d_id
-    WHERE ud.d_id = #{udId} AND tf.tf_d_id = #{tfId};
+    WHERE ud.d_id = #{udId} AND tf.tf_d_id = #{tfId} and tf.tf_flag = 0;
   </select>
+
+  <select id="findfollowById" parameterType="map" resultMap="BaseResultMap">
+    SELECT * FROM t_follow tf
+    INNER JOIN user_details ud
+    ON tf.d_id = ud.d_id
+    WHERE ud.d_id = #{udId} AND tf.tf_d_id = #{tfId}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_follow
     where tf_id = #{tfId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dfz.entity.Follow">
-    insert into t_follow (tf_id, tf_d_id, d_id
+  <insert id="addFollow" parameterType="com.dfz.entity.Follow">
+    insert into t_follow (tf_d_id, d_id,tf_flag
       )
-    values (#{tfId,jdbcType=INTEGER}, #{tfDId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER}
+    values (#{tfDId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER},#{tfFlag,jdbcType=INTEGER}
       )
   </insert>
+  <update id="updateFlag" parameterType="com.dfz.entity.Follow">
+    update t_follow
+    <set>
+      <if test="tfDId != null">
+        tf_d_id = #{tfDId,jdbcType=INTEGER},
+      </if>
+      <if test="dId != null">
+        d_id = #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="tfFlag != null">
+        tf_flag = #{tfFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tf_id = #{tfId,jdbcType=INTEGER}
+  </update>
   <insert id="insertSelective" parameterType="com.dfz.entity.Follow">
     insert into t_follow
     <trim prefix="(" suffix=")" suffixOverrides=",">

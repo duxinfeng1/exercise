@@ -7,6 +7,16 @@ public class Funs {
 
     private Integer dId;
 
+    private Integer tfFlag;
+
+    public Integer getTfFlag() {
+        return tfFlag;
+    }
+
+    public void setTfFlag(Integer tfFlag) {
+        this.tfFlag = tfFlag;
+    }
+
     public Integer getTfId() {
         return tfId;
     }

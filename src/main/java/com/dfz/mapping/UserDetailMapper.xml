@@ -21,6 +21,12 @@
     from user_details
     where d_id = #{dId}
   </select>
+  <select id="findDIdByUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ud.d_id from user_details ud
+    inner join t_user tu
+    on tu.u_id = ud.u_id
+    where tu.u_id = #{uId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_details
     where d_id = #{dId,jdbcType=INTEGER}

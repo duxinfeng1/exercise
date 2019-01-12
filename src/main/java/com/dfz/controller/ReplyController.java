@@ -17,7 +17,7 @@ public class ReplyController {
     @Autowired
     private ReplyService replyService;
 
-    @ApiOperation(notes = "实现传递参数，响应指定数量的数据",tags = {"名次"},value = "商品名称价格接口")
+    @ApiOperation(notes = "需要指定的动态id--thId",tags = {"名次"},value = "指定动态下回复的内容")
     @PostMapping("/findAllReplyByTrId.do")
     public ResultVo findAllReplyByTrId(Integer trId){
        return replyService.findAllReplyByTrId(trId);

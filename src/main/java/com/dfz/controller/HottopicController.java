@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
         @Autowired
         private HottopicService hottopicService;
-        //通过商品类型id查找商品
+        //所有热议话题
         @ApiOperation(notes = "直接调用，无需参数",tags = {"名次"},value = "查找当前所有热议话题")
         @PostMapping("/findAllHottopics.do")
         public ResultVo findAllHottopics() {
@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 
         @ApiOperation(notes = "返回的是整个页面数据",tags = {"名次"},value = "查找指定热议话题id下的页面的所有信息")
         @PostMapping("/findAllMessageByThId.do")
-        public ResultVo findAllMessageByThId(Integer udId, Integer thId) {
-            return hottopicService.findAllMessageByThId(udId,thId);
+        public ResultVo findAllMessageByThId(Integer uId, Integer thId) {
+            return hottopicService.findAllMessageByThId(uId,thId);
         }
 
     }

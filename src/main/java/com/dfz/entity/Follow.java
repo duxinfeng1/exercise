@@ -7,6 +7,8 @@ public class Follow {
 
     private Integer dId;
 
+    private Integer tfFlag;
+
     public Integer getTfId() {
         return tfId;
     }
@@ -24,10 +26,19 @@ public class Follow {
     }
 
     public Integer getdId() {
+
         return dId;
     }
 
     public void setdId(Integer dId) {
         this.dId = dId;
+    }
+
+    public Integer getTfFlag() {
+        return tfFlag;
+    }
+
+    public void setTfFlag(Integer tfFlag) {
+        this.tfFlag = tfFlag;
     }
 }

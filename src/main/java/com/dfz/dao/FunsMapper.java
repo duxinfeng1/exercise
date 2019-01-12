@@ -17,4 +17,12 @@ public interface FunsMapper {
 
     int updateByPrimaryKey(Funs record);
 
-}
+    int updateFlag(Funs funs);
+
+    int addFun(Funs funs);
+
+    Funs findfunByTwoId(Map<String, Integer> map);
+
+    Funs findfunById(Map<String, Integer> map);
+
+    }

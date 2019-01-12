@@ -11,9 +11,27 @@ public class ReleaseAndUserVo {
     private String dName;
     private String dImage;
     private Integer trId;
+    private String trInfo;
     private Integer trPraise;
     private Date trReporttime;
+    private Integer isFollow;
     private List<Images> imagesList;
+
+    public Integer getIsFollow() {
+        return isFollow;
+    }
+
+    public void setIsFollow(Integer isFollow) {
+        this.isFollow = isFollow;
+    }
+
+    public String getTrInfo() {
+        return trInfo;
+    }
+
+    public void setTrInfo(String trInfo) {
+        this.trInfo = trInfo;
+    }
 
     public Integer getdId() {
         return dId;

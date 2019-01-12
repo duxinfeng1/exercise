@@ -16,18 +16,44 @@
 
   <select id="findReplyCount" parameterType="java.lang.Integer" resultType="int">
     select COUNT(*) FROM t_reply ty
-    INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.tr_id = ty.gr_id
-    INNER JOIN user_details ud
-    ON ud.d_id = ty.d_id
-    WHERE ty.gr_id = #{grId} and ty.parentid = -1;
+    INNER JOIN t_release tr
+    on tr.tr_id = ty.gr_id
+    WHERE ty.gr_id = #{trId} and ty.re_flag = 0 and ty.parentid = 1;
   </select>
 
-  <select id="findReleasesByThIdAndTrId" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReleaseAndUserVo">
-   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE th.th_id = #{thId} order by tr.tr_id desc
+  <select id="findReleasesByMyFollow" resultType="com.dfz.vo.ReleaseAndUserVo">
+  SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_info trInfo,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_release tr
+  INNER JOIN user_details ud ON ud.d_id = tr.d_id
+  WHERE tr.tr_flag = 1 and ud.d_id in
+    <foreach item="dId" index="index" collection="list" open="(" separator="," close=")">
+    #{dId}
+    </foreach>
+    order by tr.tr_reporttime asc
+  </select>
+
+  <select id="findReleasesByThId" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReleaseAndUserVo">
+    SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_info trInfo,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_hottopic th
+    INNER JOIN t_release tr
+    ON tr.tr_flag = 0 AND tr.th_id = th.th_id
+    INNER JOIN user_details ud
+    ON ud.d_id = tr.d_id
+    WHERE th.th_id = #{thId} order by tr.tr_id desc
+  </select>
+
+  <select id="findReleasesInRelease" resultType="com.dfz.vo.ReleaseAndUserVo">
+  SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_info trInfo,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_release tr
+  INNER JOIN user_details ud ON ud.d_id = tr.d_id
+  WHERE tr.tr_flag = 1 order by tr.tr_reporttime asc
+  </select>
+
+  <select id="findAllCount" resultType="int">
+  SELECT count(*) FROM t_release tr
+  INNER JOIN user_details ud ON ud.d_id = tr.d_id
+  WHERE tr.tr_flag = 1
   </select>
 
   <select id="findReleasesByThIdAndPraise" parameterType="java.lang.Integer" resultType="com.dfz.vo.ReleaseAndUserVo">
-   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE tr.tr_praise > 20 and th.th_id = #{thId} order by tr.tr_praise asc
+   SELECT ud.d_id dId, ud.d_name dName,ud.d_image dImage,tr.tr_id trId,tr.tr_info trInfo,tr.tr_praise trPraise,tr.tr_reporttime trReporttime FROM t_hottopic th INNER JOIN t_release tr ON tr.tr_flag = 0 AND tr.th_id = th.th_id INNER JOIN user_details ud ON ud.d_id = tr.d_id WHERE tr.tr_praise > 20 and th.th_id = #{thId} order by tr.tr_praise asc
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

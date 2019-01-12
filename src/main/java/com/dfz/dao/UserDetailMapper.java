@@ -16,4 +16,6 @@ public interface UserDetailMapper {
     int updateByPrimaryKeySelective(UserDetail record);
 
     int updateByPrimaryKey(UserDetail record);
+
+    UserDetail findDIdByUId(Integer uId);
 }
