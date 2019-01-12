@@ -9,11 +9,23 @@
     <result column="s_size" jdbcType="VARCHAR" property="sSize" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="g_img" jdbcType="VARCHAR" property="gImg" />
 
   </resultMap>
   <sql id="Base_Column_List">
     id, g_name, g_price, g_num, s_size, flag
   </sql>
+  <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
+    SELECT * FROM t_cart where flag=0 AND u_id=#{uId}
+  </select>
+  <select id="selectByGNameAndUId" parameterType="map" resultMap="BaseResultMap">
+    SELECT * from t_cart where g_name=#{gName} AND  u_id=#{uId}
+  </select>
+  <update id="updateNum" parameterType="map">
+    UPDATE t_cart set g_num=#{gNum} where id=#{id}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -25,10 +37,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dfz.entity.Cart">
-    insert into t_cart (id, g_name, g_price, 
-      g_num, s_size, flag)
-    values (#{id,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gPrice,jdbcType=INTEGER}, 
-      #{gNum,jdbcType=INTEGER}, #{sSize,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER})
+    insert into t_cart (g_id, g_name, g_price,
+      g_num, s_size, u_id, g_img)
+    values (#{gId,jdbcType=INTEGER},#{gName,jdbcType=VARCHAR}, #{gPrice,jdbcType=INTEGER},
+      #{gNum,jdbcType=INTEGER}, #{sSize,jdbcType=VARCHAR},#{uId,jdbcType=INTEGER},#{gImg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dfz.entity.Cart">
     insert into t_cart
@@ -66,6 +78,9 @@
         #{gNum,jdbcType=INTEGER},
       </if>
       <if test="sSize != null">
+        #{sSize,jdbcType=VARCHAR},
+      </if>
+      <if test="gImg != null">
         #{sSize,jdbcType=VARCHAR},
       </if>
       <if test="flag != null">

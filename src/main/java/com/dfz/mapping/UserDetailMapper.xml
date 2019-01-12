@@ -16,11 +16,10 @@
   <sql id="Base_Column_List">
     d_id, u_id, d_name, sex, d_image, d_height, d_weight, d_info, d_userID, d_register
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
+  <select id="findBydId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select d_name
     from user_details
-    where d_id = #{dId,jdbcType=INTEGER}
+    where d_id = #{dId}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_details

@@ -30,7 +30,7 @@
     on tg.grade_id=g.grade_id
   </select>
   <select id="selectOne" resultMap="Grade">
-     SELECT gd.grade_id,gd.gradename,g_name,g_price,i.imgurl from t_goods g
+     SELECT gd.grade_id,gd.gradename,g.g_id,g_name,g_price,i.imgurl from t_goods g
       INNER JOIN grade gd
       on g.grade_id=gd.grade_id
       INNER JOIN t_img i
@@ -39,7 +39,7 @@
       LIMIT 4
   </select>
   <select id="selectTwo" resultMap="Grade">
-    SELECT gd.grade_id,gd.gradename,g_name,g_price,i.imgurl from t_goods g
+    SELECT gd.grade_id,gd.gradename,g.g_id,g_name,g_price,i.imgurl from t_goods g
     INNER JOIN grade gd
     on g.grade_id=gd.grade_id
     INNER JOIN t_img i
@@ -48,7 +48,7 @@
     LIMIT 4
   </select>
   <select id="selectThree" resultMap="Grade">
-    SELECT gd.grade_id,gd.gradename,g_name,g_price,i.imgurl from t_goods g
+    SELECT gd.grade_id,gd.gradename,g.g_id,g_name,g_price,i.imgurl from t_goods g
     INNER JOIN grade gd
     on g.grade_id=gd.grade_id
     INNER JOIN t_img i

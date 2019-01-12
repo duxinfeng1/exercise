@@ -1,6 +1,9 @@
 package com.dfz.vo;
 
+import com.dfz.entity.Images;
+
 import java.util.Date;
+import java.util.List;
 
 public class ReleaseAndUserVo {
 
@@ -10,7 +13,7 @@ public class ReleaseAndUserVo {
     private Integer trId;
     private Integer trPraise;
     private Date trReporttime;
-    private String tiUrl;
+    private List<Images> imagesList;
 
     public Integer getdId() {
         return dId;
@@ -60,11 +63,11 @@ public class ReleaseAndUserVo {
         this.trReporttime = trReporttime;
     }
 
-    public String getTiUrl() {
-        return tiUrl;
+    public List<Images> getImagesList() {
+        return imagesList;
     }
 
-    public void setTiUrl(String tiUrl) {
-        this.tiUrl = tiUrl;
+    public void setImagesList(List<Images> imagesList) {
+        this.imagesList = imagesList;
     }
 }
